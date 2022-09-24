@@ -19,12 +19,13 @@ export const AuthContextProvider = ({children}) => {
         signOut(auth)
     }
 
-    const login = async (email, password) => {
-        await signInWithEmailAndPassword(auth, email, password);
+    const login = (email, password) => {
+        signInWithEmailAndPassword(auth, email, password);
     }
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+            console.log(currentUser)
             setUser(currentUser)
         })
 
