@@ -4,22 +4,21 @@ import { useState } from "react";
 import { UserAuth } from "../contexts/AuthContext";
 
 const SignUp = () => {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [error, setError] = useState('')
-  const navigate = useNavigate()
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
 
-  const {createUser} = UserAuth();
+  const { createUser } = UserAuth();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError('');
+    setError("");
     try {
-        await createUser(email, password)
-        navigate('/account')
+      await createUser(email, password);
+      navigate("/account");
     } catch (error) {
-        setError(error.message)
-        console.log(error.message)
+      setError(error.message);
     }
   };
   return (
@@ -37,13 +36,29 @@ const SignUp = () => {
       <form onSubmit={handleSubmit}>
         <div className="flex flex-col py-2">
           <label className="py-2 font-medium">Email Address:</label>
-          <input className="border p-3" type="email" onChange={e => setEmail(e.target.value)} />
+          <input
+            className="border p-3"
+            type="email"
+            onChange={(e) => setEmail(e.target.value)}
+          />
         </div>
 
         <div className="flex flex-col py-2">
           <label className="py-2 font-medium">Password:</label>
-          <input className="border p-3" type="password" onChange={e => setPassword(e.target.value)} />
+          <input
+            className="border p-3"
+            type="password"
+            onChange={(e) => setPassword(e.target.value)}
+          />
         </div>
+
+        {error ? (
+          <div className="border border-red-500 bg-red-300 w-full p-4 my-2 text-white">
+            {error}
+          </div>
+        ) : (
+          <></>
+        )}
 
         <button
           type="submit"

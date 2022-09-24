@@ -17,7 +17,6 @@ const SignIn = () => {
         await login(email, password)
         navigate('/account')
     } catch (error) {
-        console.log(error.message)
         setError(error.message)
     }
   }
@@ -37,13 +36,15 @@ const SignIn = () => {
       <form onSubmit={handleSubmit}>
         <div className="flex flex-col py-2">
           <label className="py-2 font-medium">Email Address:</label>
-          <input className="border p-3" type="email" onChange={e => setEmail(e.target.value)} />
+          <input className="border p-3" type="email" value={email} onChange={e => setEmail(e.target.value)} />
         </div>
 
         <div className="flex flex-col py-2">
           <label className="py-2 font-medium">Password:</label>
-          <input className="border p-3" type="password" onChange={(e) => setPassword(e.target.value)} />
+          <input className="border p-3" type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
         </div>
+
+        {error ? <div className="border border-red-500 bg-red-300 w-full p-4 my-2 text-white">{error}</div>: <></>}
 
         <button type="submit" className="border border-blue-500 bg-blue-600 hover:bg-blue-500 w-full p-4 my-2 text-white ">
           Sign In
