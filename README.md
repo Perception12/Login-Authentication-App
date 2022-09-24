@@ -2,4 +2,4 @@
 An app that sets signup, sign in, and signout functionalities using firebase
 
 
->Deployment Link: [authentication](https://Example.com)
+>Deployment Link: [https://login-authentication-app.vercel.app/](https://login-authentication-app.vercel.app/)
